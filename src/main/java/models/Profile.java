@@ -9,6 +9,7 @@ public class Profile {
     private String location;
     private  String friendlist;
 
+
     public Profile(String username, String bio, String location, String friendlist) {
         this.username = username;
         this.bio = bio;
