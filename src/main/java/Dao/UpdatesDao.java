@@ -7,13 +7,11 @@ import java.util.List;
 
 public interface UpdatesDao {
 
-    //    List
-    List<Updates> getAllUpdates();
-
 //    create
     void add(Updates updates);
 
 //    Read
+List<Updates> getAllUpdates();
     Updates findById(int id);
 
 //    Updates

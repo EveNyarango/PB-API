@@ -1,0 +1,13 @@
+CREATE DATABASE pome;
+\c pome
+CREATE TABLE IF NOT EXISTS profile (
+id SERIAL PRIMARY KEY,
+username VARCHAR,
+bio VARCHAR,
+location VARCHAR,
+friendlist  VARCHAR);
+CREATE TABLE IF NOT EXISTS updates (
+id SERIAL PRIMARY KEY,
+post VARCHAR,
+comment VARCHAR
+);
