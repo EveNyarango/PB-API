@@ -1,5 +1,7 @@
 package models;
 
+import java.util.Objects;
+
 public class Profile {
     private int id;
     private String username;
@@ -52,5 +54,22 @@ public class Profile {
 
     public void setFriendlist(String friendlist) {
         this.friendlist = friendlist;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Profile)) return false;
+        Profile profile = (Profile) o;
+        return getId() == profile.getId() &&
+                Objects.equals(getUsername(), profile.getUsername()) &&
+                Objects.equals(getBio(), profile.getBio()) &&
+                Objects.equals(getLocation(), profile.getLocation()) &&
+                Objects.equals(getFriendlist(), profile.getFriendlist());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), getUsername(), getBio(), getLocation(), getFriendlist());
     }
 }
