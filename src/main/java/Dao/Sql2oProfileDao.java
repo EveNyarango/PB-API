@@ -18,7 +18,7 @@ public class Sql2oProfileDao implements ProfileDao{
 
     @Override
     public void add(Profile profile) {
-String sql = "INSERT INTO profile (username, bio, location, friendlist) VALUES (:username, bio, location, friendlist)";
+String sql = "INSERT INTO profile (username, bio, location, friendlist) VALUES (:username, :bio, :location, :friendlist)";
     try (Connection con = sql2o.open()){
         int id = (int) con.createQuery(sql, true)
                 .throwOnMappingFailure(false)
