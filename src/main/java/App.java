@@ -61,6 +61,26 @@ public class App {
             return gson.toJson(UpdatesDao.getAllUpdates());//send it back to be displayed
         });
 
+//        find
+        get("/profile/:id", "application/json", (req, res) -> {
+            int profileId = Integer.parseInt(req.params("id"));
+            Profile profileToFind = ProfileDao.getProfileById(profileId);
+
+            if(profileToFind == null) {
+                throw new ApiException(404, String.format("No user with the id: \"%s\" exists", req.params("id")));
+            }
+            return gson.toJson(profileToFind);
+        });
+
+        get("/updates/:id", "application/json", (req, res) -> {
+            int updatesId = Integer.parseInt(req.params("id"));
+            Updates updatesToFind = UpdatesDao.findById(updatesId);
+
+            if(updatesToFind == null) {
+                throw new ApiException(404, String.format("No user with the id: \"%s\" exists", req.params("id")));
+            }
+            return gson.toJson(updatesToFind);
+        });
         //FILTERS
         exception(ApiException.class, (exception, req, res) -> {
             ApiException err = exception;
