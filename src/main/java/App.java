@@ -1,12 +1,16 @@
 import Dao.Sql2oProfileDao;
 import Dao.Sql2oUpdatesDao;
 import com.google.gson.Gson;
+import exception.ApiException;
 import models.Profile;
 import models.Updates;
 import org.sql2o.Sql2o;
 import static spark.Spark.*;
 
 import org.sql2o.Connection;
+
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class App {
@@ -45,6 +49,35 @@ public class App {
             res.type("application/json");
             return gson.toJson(updates);
         });
+
+        //        Read
+        get("/profile", "application/json", (req, res) -> {
+            res.type("application/json");
+            return gson.toJson(ProfileDao.getAllProfile());//send it back to be displayed
+        });
+
+        get("/updates", "application/json", (req, res) -> {
+            res.type("application/json");
+            return gson.toJson(UpdatesDao.getAllUpdates());//send it back to be displayed
+        });
+
+        //FILTERS
+        exception(ApiException.class, (exception, req, res) -> {
+            ApiException err = exception;
+            Map<String, Object> jsonMap = new HashMap<>();
+            jsonMap.put("status", err.getStatusCode());
+            jsonMap.put("errorMessage", err.getMessage());
+            res.type("application/json");
+            res.status(err.getStatusCode());
+            res.body(gson.toJson(jsonMap));
+        });
+
+
+        after((req, res) ->{
+            res.type("application/json");
+        });
+
+
     }
 
 }
