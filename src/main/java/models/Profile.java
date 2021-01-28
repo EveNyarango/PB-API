@@ -1,5 +1,5 @@
 package models;
-
+import java.sql.Timestamp;
 import java.util.Objects;
 
 public class Profile {
@@ -7,19 +7,24 @@ public class Profile {
     private String username;
     private String bio;
     private String location;
-    private  String friendlist;
+    private String email;
+    private String imageurl;
+    private Timestamp createdat;
 
 
-    public Profile(String username, String bio, String location, String friendlist) {
+    public Profile(String username, String bio, String location, String email, String imageurl) {
         this.username = username;
         this.bio = bio;
         this.location = location;
-        this.friendlist = friendlist;
+        this.email = email;
+        this.imageurl = imageurl;
+
     }
 
     public int getId() {
         return id;
     }
+
 
     public void setId(int id) {
         this.id = id;
@@ -38,6 +43,7 @@ public class Profile {
     }
 
     public void setBio(String bio) {
+
         this.bio = bio;
     }
 
@@ -49,12 +55,30 @@ public class Profile {
         this.location = location;
     }
 
-    public String getFriendlist() {
-        return friendlist;
+    public String getEmail() {
+        return email;
     }
 
-    public void setFriendlist(String friendlist) {
-        this.friendlist = friendlist;
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+
+    public String getImageurl() {
+        return imageurl;
+    }
+
+    public void setImageUrl(String imageurl) {
+        this.imageurl = imageurl;
+    }
+
+
+    public Timestamp getCreatedat() {
+        return createdat;
+    }
+
+    public void setCreatedat(Timestamp createdat) {
+        this.createdat = createdat;
     }
 
     @Override
@@ -66,11 +90,16 @@ public class Profile {
                 Objects.equals(getUsername(), profile.getUsername()) &&
                 Objects.equals(getBio(), profile.getBio()) &&
                 Objects.equals(getLocation(), profile.getLocation()) &&
-                Objects.equals(getFriendlist(), profile.getFriendlist());
+                Objects.equals(getEmail(), profile.getEmail()) &&
+                Objects.equals(getImageurl(), profile.getImageurl()) &&
+                Objects.equals(getCreatedat(), profile.getCreatedat());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getUsername(), getBio(), getLocation(), getFriendlist());
+        return Objects.hash(getId(), getUsername(), getBio(), getLocation(), getEmail(), getImageurl(), getCreatedat());
     }
+
 }
+
+

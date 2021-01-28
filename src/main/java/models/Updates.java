@@ -4,16 +4,26 @@ import java.util.Objects;
 
 public class Updates {
     private int id;
+    private String name;
     private String post;
     private String comment;
 
-    public Updates(String post, String comment) {
+    public Updates(String post, String comment, String name) {
+        this.name = name;
         this.post = post;
         this.comment = comment;
     }
 
     public int getId() {
         return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public void setId(int id) {
@@ -42,12 +52,13 @@ public class Updates {
         if (!(o instanceof Updates)) return false;
         Updates updates = (Updates) o;
         return getId() == updates.getId() &&
+                Objects.equals(getName(), updates.getName()) &&
                 Objects.equals(getPost(), updates.getPost()) &&
                 Objects.equals(getComment(), updates.getComment());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getPost(), getComment());
+        return Objects.hash(getId(), getName(), getPost(), getComment());
     }
 }

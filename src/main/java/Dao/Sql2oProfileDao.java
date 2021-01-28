@@ -18,7 +18,7 @@ public class Sql2oProfileDao implements ProfileDao{
 
     @Override
     public void add(Profile profile) {
-String sql = "INSERT INTO profile (username, bio, location, friendlist) VALUES (:username, :bio, :location, :friendlist)";
+String sql = "INSERT INTO profile (username, bio, location, email, imageurl, createdat) VALUES (:username, :bio, :location, :email, :imageurl, now())";
     try (Connection con = sql2o.open()){
         int id = (int) con.createQuery(sql, true)
                 .throwOnMappingFailure(false)
@@ -26,7 +26,8 @@ String sql = "INSERT INTO profile (username, bio, location, friendlist) VALUES (
                 .addParameter("username", profile.getUsername())
                 .addParameter("bio", profile.getBio())
                 .addParameter("location", profile.getLocation())
-                .addParameter("friendlist", profile.getFriendlist())
+                .addParameter("email", profile.getEmail())
+                .addParameter("imageurl", profile.getImageurl())
                 .executeUpdate()
                 .getKey();
         profile.setId(id);
@@ -58,14 +59,15 @@ String sql = "INSERT INTO profile (username, bio, location, friendlist) VALUES (
     }
 
     @Override
-    public void update(int id, String newUsername, String newBio, String newLocation, String newFriendlist) {
-String sql = "UPDATE profile SET ( (username, bio, location, friendlist) = (:username, bio, location, friendlist)";
+    public void update(int id, String newUsername, String newBio, String newLocation, String newEmail, String newImageurl) {
+String sql = "UPDATE profile SET ((username, bio, location, email, imageurl) = (:username, bio, location, email, imageurl, now())";
 try (Connection con = sql2o.open()){
     con.createQuery(sql)
             .addParameter("username", newUsername)
             .addParameter("bio", newBio)
             .addParameter("location", newLocation)
-            .addParameter("friendlist", newFriendlist)
+            .addParameter("email", newEmail)
+            .addParameter("imageurl", newImageurl)
             .addParameter("id", id)
             .executeUpdate();
 }catch (Sql2oException ex) {

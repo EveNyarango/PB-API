@@ -18,11 +18,12 @@ public class Sql2oUpdatesDao implements UpdatesDao {
 
     @Override
     public void add(Updates updates) {
-        String sql = "INSERT INTO updates (post, comment) VALUES (:post, :comment)";
+        String sql = "INSERT INTO updates (name, post, comment) VALUES (:name, :post, :comment)";
         try (Connection con = sql2o.open()){
             int id = (int) con.createQuery(sql,true)
                     .throwOnMappingFailure(false)
                     .bind(updates)
+                    .addParameter("name", updates.getName())
                     .addParameter("post", updates.getPost())
                     .addParameter("comment", updates.getComment())
                     .executeUpdate()
@@ -56,10 +57,11 @@ try (Connection con = sql2o.open()){
     }
 
     @Override
-    public void update(int id, String newPost, String newComment) {
-String sql = "UPDATE updates SET (post, comment)";
+    public void update(int id, String newName, String newPost, String newComment) {
+String sql = "UPDATE updates SET (name, post, comment)";
 try(Connection con = sql2o.open()){
     con.createQuery(sql)
+            .addParameter("name", newName)
             .addParameter("post", newPost)
             .addParameter("comment", newComment)
             .addParameter("id", id)

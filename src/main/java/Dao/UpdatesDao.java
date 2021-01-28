@@ -15,7 +15,7 @@ List<Updates> getAllUpdates();
     Updates findById(int id);
 
 //    Updates
-    void update(int id, String post, String Comment);
+    void update(int id, String name, String post, String Comment);
 
 //    Delete
     void deleteById(int id);

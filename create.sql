@@ -5,9 +5,13 @@ id SERIAL PRIMARY KEY,
 username VARCHAR,
 bio VARCHAR,
 location VARCHAR,
-friendlist  VARCHAR);
+email  VARCHAR,
+imageurl VARCHAR,
+createdat TIMESTAMP);
 CREATE TABLE IF NOT EXISTS updates (
 id SERIAL PRIMARY KEY,
+name VARCHAR,
 post VARCHAR,
 comment VARCHAR
 );
+CREATE DATABASE pome_test WITH TEMPLATE pome;

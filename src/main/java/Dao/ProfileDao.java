@@ -14,7 +14,7 @@ public interface ProfileDao {
     Profile getProfileById(int id);
 
 //Update
-    void update(int id, String username, String bio, String location, String friendlist);
+    void update(int id, String username, String bio, String location, String email, String imageurl);
 
 //    Delete
     void deleteById(int id);
