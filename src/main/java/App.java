@@ -30,7 +30,7 @@ public class App {
 
 //        Homepage
         get("/", "application/json", (req, res) ->
-                "{\"message\":\"Welcome to the organisation  to Green Screen.\"}");
+                "{\"message\":\"Welcome to Green Screen. Happy to have you.\"}");
 
 //        Create
 

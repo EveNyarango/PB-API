@@ -27,18 +27,22 @@ public class Profile {
 
 
     public void setId(int id) {
+
         this.id = id;
     }
 
     public String getUsername() {
+
         return username;
     }
 
     public void setUsername(String username) {
+
         this.username = username;
     }
 
     public String getBio() {
+
         return bio;
     }
 
@@ -52,14 +56,17 @@ public class Profile {
     }
 
     public void setLocation(String location) {
+
         this.location = location;
     }
 
     public String getEmail() {
+
         return email;
     }
 
     public void setEmail(String email) {
+
         this.email = email;
     }
 
